@@ -32,7 +32,7 @@ body {
 }
 
 /* ===============================
-   RIGA 1 — Regole + Storico + IA1 + IA2
+   RIGA 1 — Pulsanti + Punteggi + Briscola
    =============================== */
 
 #topRow {
@@ -42,6 +42,18 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 4px;
+}
+
+/* ===============================
+   RIGA 2 — IA1 + IA2 (NUOVA)
+   =============================== */
+
+#opponent-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 4px;
+  flex-wrap: wrap;
 }
 
 /* ===============================
@@ -224,7 +236,7 @@ button:active,
 }
 
 /* ===============================
-   BRISCOLA — ORA IN TOPROW
+   BRISCOLA — IN TOPROW
    =============================== */
 
 #briscola-box {
@@ -246,6 +258,7 @@ button:active,
   justify-content: center;
   padding: 2px 6px;
 }
+
 /* ===============================
    CARTE GIOCATE
    =============================== */
@@ -318,7 +331,7 @@ button:active,
 }
 
 /* ===============================
-   CARTE — AUMENTO +10% + OMBRE PREMIUM
+   CARTE — PREMIUM
    =============================== */
 
 .card {
@@ -340,8 +353,6 @@ button:active,
   display: block;
 }
 
-/* Cliccabile */
-
 .clickable {
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
@@ -352,13 +363,10 @@ button:active,
   box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
 }
 
-/* Evidenziazione vincitore */
-
 .winner-highlight {
   box-shadow: 0 0 18px rgba(255, 215, 0, 0.75);
   border: 2px solid #ffd700;
 }
-
 /* ===============================
    JOKER UI
    =============================== */
@@ -417,10 +425,13 @@ button:active,
 
 @media (max-width: 900px) {
 
-  #topRow,
-  #bottomRow {
+  #topRow {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  #opponent-row {
+    gap: 10px;
   }
 
   #player-ai1,
@@ -439,29 +450,31 @@ button:active,
 
 @media (max-width: 768px) {
 
-  #game-container {
-    padding: 6px;
-    gap: 8px;
+  #topRow {
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: space-between;
   }
 
-  #topRow {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 8px;
+  /* IA1 / IA2 ora sono in opponent-row */
+  #opponent-row {
+    justify-content: center;
+    gap: 10px;
   }
 
   #player-ai1,
   #player-ai2 {
-    flex: 0 0 auto;
-    width: 110px;
+    width: 46%;
+    min-width: 95px;
+    padding: 4px 6px;
   }
 
-  #table-layout {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
+  .player-name {
+    font-size: 0.85rem;
+  }
+
+  .opponent-hand {
+    font-size: 0.9rem;
   }
 
   #score-column {
@@ -469,9 +482,8 @@ button:active,
     max-width: 260px;
   }
 
-  .scoreBox {
+  .scoreRow {
     font-size: 0.9rem;
-    max-width: 120px;
     padding: 6px 8px;
   }
 
@@ -493,17 +505,30 @@ button:active,
 @media (max-width: 480px) {
 
   #topRow {
-    flex-direction: row;
     flex-wrap: wrap;
+    gap: 6px;
     justify-content: space-between;
   }
 
-  /* 🔥 Riduzione IA1 / IA2 */
+  /* IA1 / IA2 ora sono in opponent-row */
+  #opponent-row {
+    justify-content: center;
+    gap: 8px;
+  }
+
   #player-ai1,
   #player-ai2 {
-    width: 42%;
-    min-width: 95px;
-    padding: 4px 6px;
+    width: 47%;
+    min-width: 88px;
+    padding: 2px 4px;
+  }
+
+  .player-name {
+    font-size: 0.75rem;
+  }
+
+  .opponent-hand {
+    font-size: 0.8rem;
   }
 
   #score-column {
@@ -519,5 +544,11 @@ button:active,
   #table-row {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .scoreRow {
+    font-size: 0.85rem;
+    gap: 8px;
+    padding: 5px 8px;
   }
 }

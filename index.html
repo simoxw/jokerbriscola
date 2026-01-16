@@ -10,7 +10,7 @@
 
   <div id="game-container">
 
-    <!-- RIGA UNICA: Pulsanti icona + Punteggi + Briscola + IA1 + IA2 -->
+    <!-- RIGA 1: Pulsanti + Punteggi + Briscola -->
     <div id="topRow">
 
       <div id="button-group">
@@ -20,7 +20,6 @@
         <button onclick="resetMatch()" title="Ricomincia da capo">🔄</button>
       </div>
 
-      <!-- 🔥 PUNTEGGI ORIZZONTALI -->
       <div id="score-column" class="score-horizontal">
         <div id="matchScore" class="scoreRow">
           <strong>Partita:</strong>
@@ -29,20 +28,23 @@
           <span>IA2: <span id="score-ai2">0</span></span>
         </div>
         <div id="handScore" class="scoreRow">
-          <strong>Mano (120):</strong>
+          <strong>Mano:</strong>
           <span>Tu: <span id="hand-me">0</span></span>
           <span>IA1: <span id="hand-ai1">0</span></span>
           <span>IA2: <span id="hand-ai2">0</span></span>
         </div>
       </div>
 
-      <!-- 🔥 BRISCOLA SPOSTATA -->
       <div id="briscola-box">
         <span class="briscola-label">Briscola</span>
         <div id="briscola"></div>
       </div>
 
-      <!-- IA1 + IA2 -->
+    </div>
+
+    <!-- RIGA 2 NUOVA: IA1 + IA2 -->
+    <div id="opponent-row">
+
       <div id="player-ai1" class="opponent player-box">
         <span class="player-name">IA1 <span class="ai-difficulty">🟡</span></span>
         <div class="joker-banner">JOKER</div>
@@ -56,8 +58,6 @@
       </div>
 
     </div>
-
-    <!-- 🔥 RIGA 2 RIMOSSA -->
 
     <!-- TAVOLO -->
     <div id="table-layout">
