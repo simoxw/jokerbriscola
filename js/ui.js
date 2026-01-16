@@ -1,4 +1,19 @@
 // ===============================
+// CACHE IMMAGINI (NUOVA SEZIONE)
+// ===============================
+
+const imageCache = new Map();
+
+function loadCardImage(src) {
+  if (imageCache.has(src)) return imageCache.get(src);
+
+  const img = new Image();
+  img.src = src;
+  imageCache.set(src, img);
+  return img;
+}
+
+// ===============================
 // GESTIONE UI
 // ===============================
 
@@ -10,7 +25,7 @@ function renderUI() {
   renderPlayedTrick();
   renderMatchScore();
   renderHandScore();
-  updateDifficultyBadges(); // 🔥 aggiorna badge difficoltà
+  updateDifficultyBadges();
 }
 
 // Render mano del giocatore
@@ -87,14 +102,18 @@ function renderHandScore() {
   document.getElementById("hand-ai2").textContent = scores.ai2;
 }
 
-// Crea elemento DOM per una carta
+// ===============================
+// RENDER CARTA (MODIFICATO CON CACHE)
+// ===============================
+
 function renderCardImage(card) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("card", "card-image");
 
-  const img = document.createElement("img");
+  const src = `assets/cards/${card.suit}/${card.file}.png`;
+  const img = loadCardImage(src).cloneNode();
+
   img.classList.add("card-img");
-  img.src = `assets/cards/${card.suit}/${card.file}.png`;
   img.alt = describeCard(card);
 
   wrapper.appendChild(img);
@@ -312,11 +331,10 @@ function closeDifficultyPanel() {
 
 function setDifficulty(level) {
   window.AI_DIFFICULTY = level;
-  updateDifficultyBadges(); // 🔥 nuovo
+  updateDifficultyBadges();
   closeDifficultyPanel();
 }
 
-// 🔥 NUOVA FUNZIONE: aggiorna i badge 🟡 / 🔴
 function updateDifficultyBadges() {
   const badges = document.querySelectorAll(".ai-difficulty");
   if (!badges.length) return;
