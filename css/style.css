@@ -132,19 +132,6 @@ button:active,
 }
 
 /* ===============================
-   RIGA 2 — Difficoltà
-   =============================== */
-
-#bottomRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 6px;
-}
-
-/* ===============================
    SEZIONE AVVERSARI (IA1 / IA2)
    =============================== */
 
@@ -164,6 +151,12 @@ button:active,
   text-transform: uppercase;
   opacity: 1;
   font-weight: 600;
+}
+
+.ai-difficulty {
+  font-size: 0.85rem;
+  margin-left: 4px;
+  opacity: 0.9;
 }
 
 .opponent-hand {
@@ -407,7 +400,7 @@ button:active,
 }
 
 /* ============================
-   TESTO DIFFICOLTÀ
+   TESTO DIFFICOLTÀ (NON PIÙ USATO)
    ============================ */
 
 .difficulty-inline {
@@ -505,10 +498,12 @@ button:active,
     justify-content: space-between;
   }
 
+  /* 🔥 Riduzione IA1 / IA2 */
   #player-ai1,
   #player-ai2 {
-    width: 46%;
-    min-width: 130px;
+    width: 42%;
+    min-width: 95px;
+    padding: 4px 6px;
   }
 
   #score-column {

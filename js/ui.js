@@ -10,6 +10,7 @@ function renderUI() {
   renderPlayedTrick();
   renderMatchScore();
   renderHandScore();
+  updateDifficultyBadges(); // 🔥 aggiorna badge difficoltà
 }
 
 // Render mano del giocatore
@@ -311,21 +312,20 @@ function closeDifficultyPanel() {
 
 function setDifficulty(level) {
   window.AI_DIFFICULTY = level;
-  updateDifficultyIndicator();
+  updateDifficultyBadges(); // 🔥 nuovo
   closeDifficultyPanel();
 }
 
-function updateDifficultyIndicator() {
-  const text = document.getElementById("difficultyText");
-  if (!text) return;
+// 🔥 NUOVA FUNZIONE: aggiorna i badge 🟡 / 🔴
+function updateDifficultyBadges() {
+  const badges = document.querySelectorAll(".ai-difficulty");
+  if (!badges.length) return;
 
-  if (window.AI_DIFFICULTY === "intermediate") {
-    text.textContent = "Difficoltà IA: Intermedia";
-    text.style.color = "#2a7cff";
-  } else {
-    text.textContent = "Difficoltà IA: Difficile";
-    text.style.color = "#d62828";
-  }
+  const isHard = window.AI_DIFFICULTY === "advanced";
+
+  badges.forEach(b => {
+    b.textContent = isHard ? "🔴" : "🟡";
+  });
 }
 
 // ===============================
