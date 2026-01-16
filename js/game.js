@@ -3,8 +3,6 @@
 // ===============================
 
 function startMatch() {
-  // Per semplicità, ignoriamo il mazziere per la primissima mano:
-  // parte sempre "me". Dalla seconda mano in poi parte chi ha preso.
   startSingleGame();
 }
 
@@ -14,22 +12,17 @@ function startSingleGame() {
   GAME_STATE.currentTrick = { starter: null, cards: { me: null, ai1: null, ai2: null } };
   GAME_STATE.trickHistory = [];
 
-  // Reset grafico del Joker all'inizio di ogni partita singola
   clearAllJokers();
 
-  // Crea mazzo
   GAME_STATE.deck = createFullDeck();
   removeRandomTwo(GAME_STATE.deck);
   shuffle(GAME_STATE.deck);
 
-  // Distribuzione iniziale (3 carte ciascuno)
   dealInitialHands();
 
-  // BRISCOLA = ULTIMA CARTA DEL MAZZO
   GAME_STATE.briscolaCard = GAME_STATE.deck.pop();
   GAME_STATE.briscolaSuit = GAME_STATE.briscolaCard.suit;
 
-  // PRIMA MANO: parte sempre il giocatore umano ("me")
   GAME_STATE.currentTrick.starter = "me";
   GAME_STATE.currentPlayer = "me";
 
@@ -57,7 +50,6 @@ function playCard(player, card) {
     GAME_STATE.inputLocked = true;
   }
 
-  // Assegna Joker alla prima briscola giocata in questa partita singola
   if (!GAME_STATE.jokerPlayer && card.suit === GAME_STATE.briscolaSuit) {
     GAME_STATE.jokerPlayer = player;
     revealJokerUI(player);
@@ -65,15 +57,13 @@ function playCard(player, card) {
 
   const played = GAME_STATE.currentTrick.cards;
 
-  // ✅ PATCH: se la presa è completa, NON passiamo il turno
   if (played.me && played.ai1 && played.ai2) {
-    GAME_STATE.currentPlayer = null;   // blocca i click
+    GAME_STATE.currentPlayer = null;
     renderUI();
     resolveTrick();
     return;
   }
 
-  // Se la presa NON è completa, turno normale
   GAME_STATE.currentPlayer = getNextPlayer(player);
   renderUI();
 
@@ -108,18 +98,22 @@ function resolveTrick() {
   btn.onclick = advanceToNextHand;
 }
 
+// 🔥 MODIFICATO: highlight persistente
 function highlightWinnerCard(winner) {
   const slot = document.getElementById(`played-${winner}`);
   slot.classList.add("winner-highlight");
-  setTimeout(() => slot.classList.remove("winner-highlight"), 1200);
 }
 
 function advanceToNextHand() {
   document.getElementById("nextHandBtn").style.display = "none";
 
+  // 🔥 Rimuove highlight persistente della presa precedente
+  document.getElementById("played-me").classList.remove("winner-highlight");
+  document.getElementById("played-ai1").classList.remove("winner-highlight");
+  document.getElementById("played-ai2").classList.remove("winner-highlight");
+
   const order = getTrickOrder();
 
-  // Ordine di pesca: winner, poi gli altri in orario
   for (let i = 0; i < order.length; i++) {
     const player = order[i];
 
