@@ -20,52 +20,56 @@
         <button onclick="resetMatch()" title="Ricomincia da capo">🔄</button>
       </div>
 
-      <div id="score-column" class="score-horizontal">
-        <div id="matchScore" class="scoreRow">
-          <strong>Partita:</strong>
-          <span>Tu: <span id="score-me">0</span></span>
-          <span>IA1: <span id="score-ai1">0</span></span>
-          <span>IA2: <span id="score-ai2">0</span></span>
-        </div>
-        <div id="handScore" class="scoreRow">
-          <strong>Mano:</strong>
-          <span>Tu: <span id="hand-me">0</span></span>
-          <span>IA1: <span id="hand-ai1">0</span></span>
-          <span>IA2: <span id="hand-ai2">0</span></span>
-        </div>
-      </div>
+      <!-- GRUPPO PUNTEGGI + BRISCOLA -->
+      <div id="score-group">
 
-      <div id="briscola-box">
-        <span class="briscola-label">Briscola</span>
-        <div id="briscola"></div>
-      </div>
+        <div id="score-column" class="score-horizontal">
+          <div id="matchScore" class="scoreRow">
+            <strong>Partita:</strong>
+            <span>Tu: <span id="score-me">0</span></span>
+            <span>IA1: <span id="score-ai1">0</span></span>
+            <span>IA2: <span id="score-ai2">0</span></span>
+          </div>
+          <div id="handScore" class="scoreRow">
+            <strong>Mano:</strong>
+            <span>Tu: <span id="hand-me">0</span></span>
+            <span>IA1: <span id="hand-ai1">0</span></span>
+            <span>IA2: <span id="hand-ai2">0</span></span>
+          </div>
+        </div>
 
+        <div id="briscola-box">
+          <span class="briscola-label">Briscola</span>
+          <div id="briscola"></div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- RIGA 2 NUOVA: IA1 + IA2 -->
-    <div id="opponent-row">
-
-      <div id="player-ai1" class="opponent player-box">
-        <span class="player-name">IA1 <span class="ai-difficulty">🟡</span></span>
-        <div class="joker-banner">JOKER</div>
-        <div id="ai1" class="opponent-hand">🂠 x3</div>
-      </div>
-
-      <div id="player-ai2" class="opponent player-box">
-        <span class="player-name">IA2 <span class="ai-difficulty">🟡</span></span>
-        <div class="joker-banner">JOKER</div>
-        <div id="ai2" class="opponent-hand">🂠 x3</div>
-      </div>
-
-    </div>
-
-    <!-- TAVOLO -->
+    <!-- TAVOLO + IA + TUA MANO -->
     <div id="table-layout">
 
+      <!-- IA1 + IA2 CENTRATI SOPRA IL TAVOLO -->
+      <div id="opponent-row">
+
+        <div id="player-ai1" class="opponent player-box">
+          <span class="player-name">IA1 <span class="ai-difficulty">🟡</span></span>
+          <div class="joker-banner">JOKER</div>
+          <div id="ai1" class="opponent-hand">🂠 x3</div>
+        </div>
+
+        <div id="player-ai2" class="opponent player-box">
+          <span class="player-name">IA2 <span class="ai-difficulty">🟡</span></span>
+          <div class="joker-banner">JOKER</div>
+          <div id="ai2" class="opponent-hand">🂠 x3</div>
+        </div>
+
+      </div>
+
+      <!-- TAVOLO -->
       <div id="table">
 
         <div id="table-row">
-
           <div id="played">
             <div>
               <div id="played-me" class="played-slot"></div>
@@ -80,7 +84,6 @@
               <div class="played-label">IA2</div>
             </div>
           </div>
-
         </div>
 
         <div id="deck-box">
@@ -91,21 +94,21 @@
 
       </div>
 
-    </div>
+      <!-- TUA MANO CENTRATA SOTTO IL TAVOLO -->
+      <div id="player-area">
 
-    <!-- TUA MANO -->
-    <div id="player-area">
+        <div style="display:flex; justify-content:center; gap:12px; align-items:center; margin-bottom:6px;">
+          <h3 style="margin:0;">Le tue carte</h3>
+          <span class="player-label" style="margin:0;">Tu</span>
+        </div>
 
-      <div style="display:flex; justify-content:center; gap:12px; align-items:center; margin-bottom:6px;">
-        <h3 style="margin:0;">Le tue carte</h3>
-        <span class="player-label" style="margin:0;">Tu</span>
+        <div id="player-me" class="player-box" style="margin-bottom:20px;">
+          <div class="joker-banner">JOKER</div>
+        </div>
+
+        <div id="me" class="player-hand"></div>
+
       </div>
-
-      <div id="player-me" class="player-box" style="margin-bottom:20px;">
-        <div class="joker-banner">JOKER</div>
-      </div>
-
-      <div id="me" class="player-hand"></div>
 
     </div>
 
