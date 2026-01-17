@@ -444,7 +444,8 @@ button:active {
   }
 
   #briscola-box {
-    margin-left: 6px;
+    margin-left: 12px;
+    margin-top: -36px; /* 🔥 MODIFICA VISIBILE */
   }
 
   #player-ai1,
@@ -495,6 +496,8 @@ button:active {
 
   #briscola-box {
     min-width: 70px;
+    margin-left: 18px; /* 👉 più a destra su schermi piccoli */
+    margin-top: -42px; /* 🔥 MODIFICA PIÙ FORTE SU MOBILE PICCOLO */
   }
 
   #player-ai1,
